@@ -1,0 +1,22 @@
+version: '3'
+services:
+     apiwt:
+        container_name: tr-apiwt
+        build: .
+        ports:
+          - 3000:3000
+
+     postgres:
+        image: timescale/timescaledb:latest-pg13
+        container_name: tr-postgres
+        restart: always
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: 1234
+            POSTGRES_DB: postgres
+        volumes:
+          - ./data/postgres/data:/var/lib/postgresql/data/
+        ports:
+            - 5432:5432 
+      
+    
